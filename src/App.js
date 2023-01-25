@@ -49,6 +49,7 @@ function App() {
                 postsPerPage={postsPerPage}
                 totalPosts={data.length}
                 paginate={paginate}
+                currentPage={currentPage}
             />
         </>
     );

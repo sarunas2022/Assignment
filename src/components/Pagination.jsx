@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Pagination.module.scss';
 
-export const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+export const Pagination = ({
+    postsPerPage,
+    totalPosts,
+    paginate,
+    currentPage,
+}) => {
     const pageNumbers = [];
+    const [activePage, setActivePage] = useState('');
+    console.log(currentPage);
 
+    // getting number of pages
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i);
     }
@@ -12,7 +20,11 @@ export const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
             {pageNumbers.map((number) => (
                 <div
                     onClick={() => paginate(number)}
-                    className={styles.pageNumber}
+                    className={
+                        currentPage === number
+                            ? styles.currentPageNumberBox
+                            : styles.pageNumberBox
+                    }
                     key={number}
                 >
                     <a className={styles.pageLink} href='!#'>
