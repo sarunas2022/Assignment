@@ -1,9 +1,14 @@
 import './App.scss';
 import React, { useState, useEffect } from 'react';
+import { Posts } from './components/Posts';
 
 function App() {
-    const [data, setData] = useState('');
+    const [data, setData] = useState([]);
     const [status, setStatus] = useState('idle');
+    // for pagination
+    const [currentpage, setCurrentPage] = useState(1);
+    const [postPerPage, setPostPerPage] = useState(50);
+
     console.log(data);
 
     // getting data from API
@@ -27,7 +32,7 @@ function App() {
         fetchData();
     }, []);
 
-    return <>hi</>;
+    return <Posts data={data} status={status} />;
 }
 
 export default App;
