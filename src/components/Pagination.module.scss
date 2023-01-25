@@ -1,0 +1,18 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 1rem;
+    .pageNumber {
+        border: 0.1rem solid black;
+        text-align: center;
+        padding: 0.5rem;
+        width: 2.5rem;
+        &:hover {
+            cursor: pointer;
+        }
+        .pageLink {
+            text-decoration: none;
+        }
+    }
+}
