@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Pagination.module.scss';
 
 export const Pagination = ({
@@ -8,8 +8,6 @@ export const Pagination = ({
     currentPage,
 }) => {
     const pageNumbers = [];
-    const [activePage, setActivePage] = useState('');
-    console.log(currentPage);
 
     // getting number of pages
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {

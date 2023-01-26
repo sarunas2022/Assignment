@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Posts.module.scss';
 
 export const Posts = ({ data, status }) => {
-    if (status !== 'fulfilled') {
+    if (status === 'loading') {
         return <h2>Loading</h2>;
     }
     return (
