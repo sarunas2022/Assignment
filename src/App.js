@@ -10,7 +10,8 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(20);
 
-    console.log(data);
+    // for sorting
+    const [sort, setSort] = useState('ascending');
 
     // getting data from API
     const fetchData = async () => {
@@ -21,12 +22,34 @@ function App() {
             );
             const response = await data.json();
             setData(response);
+
             setStatus('fulfilled');
         } catch (err) {
             console.log(err);
             setStatus('rejected');
         }
     };
+
+    // function to sort post ascending or descending alphabetically
+    const sortingPosts = () => {
+        if (sort === 'Descending') {
+            setSort('ascending');
+            data.sort((a, b) => {
+                if (a.name < b.name) return -1;
+                return 1;
+            });
+        } else {
+            console.log('clicked');
+            setSort('Descending');
+            data.sort((a, b) => {
+                if (a.name > b.name) return -1;
+                return 1;
+            });
+        }
+    };
+    // Sorting ascending
+
+    // Sorting Descending
 
     // Fetching data on page load
     useEffect(() => {
@@ -38,12 +61,24 @@ function App() {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPost = data.slice(indexOfFirstPost, indexOfLastPost);
 
-    // change page
+    // change page - function passed down as props to pagination.jsx, returns
+    // value of click event as pageNumber and its used sets CurrentPage
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
+            <div className='ButtonsContainer'>
+                <div className='filterButtons'>
+                    <button>Smaller Then LT</button>
+                    <button>Oceanic region</button>
+                </div>
+                <div className='sortingButtons'>
+                    <button onClick={() => sortingPosts()}>
+                        {sort === 'ascending' ? 'Sort (Z-A)' : 'Sort (A-Z)'}
+                    </button>
+                </div>
+            </div>
             <Posts data={currentPost} status={status} />
             <Pagination
                 postsPerPage={postsPerPage}
