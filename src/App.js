@@ -14,8 +14,9 @@ function App() {
     const [sort, setSort] = useState('ascending');
     // for filtering by region- store the selected region option value
     const [selectedRegion, setSelectedRegion] = useState('All regions');
-    const [filteredData, setFilteredData] = useState([]);
-
+    const [smallerThanLT, setSmallerThanLT] = useState(false);
+    const [filteredData, setFilteredData] = useState('');
+    console.log(filteredData);
     // Fetching data on page load
     useEffect(() => {
         // getting data from API
@@ -41,7 +42,7 @@ function App() {
     // function to sort post ascending or descending alphabetically
     const sortingPosts = () => {
         // checking if data was filtered if not sorting data array
-        if (selectedRegion === 'All regions') {
+        if (selectedRegion === 'All regions' && !smallerThanLT) {
             if (sort === 'Descending') {
                 setSort('ascending');
                 data.sort((a, b) => {
@@ -74,24 +75,37 @@ function App() {
         setCurrentPage(1);
     };
 
-    // filtering posts by region
+    // onChange sets region value to state to enable filtering posts by region
     const filterByRegion = (event) => {
         setSelectedRegion(event.target.value);
     };
+    // onClicks  filtering posts by area < Lithuania
+    const areaLessThanLT = () => {
+        !smallerThanLT ? setSmallerThanLT(true) : setSmallerThanLT(false);
+    };
 
+    // all filters
     useEffect(() => {
-        const filteredByRegion = [...data].filter(
-            (country) => country.region === selectedRegion
-        );
-        setFilteredData(filteredByRegion);
+        let filteredData = [...data];
+        if (selectedRegion !== 'All regions') {
+            filteredData = filteredData.filter(
+                (country) => country.region === selectedRegion
+            );
+        }
+        if (smallerThanLT) {
+            filteredData = filteredData.filter(
+                (country) => country.area < 65300
+            );
+        }
+        setFilteredData(filteredData);
         setCurrentPage(1);
-    }, [data, selectedRegion]);
+    }, [data, selectedRegion, smallerThanLT]);
 
     // get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPost =
-        selectedRegion !== 'All regions'
+        selectedRegion !== 'All regions' || smallerThanLT
             ? filteredData.slice(indexOfFirstPost, indexOfLastPost)
             : data.slice(indexOfFirstPost, indexOfLastPost);
 
@@ -104,7 +118,9 @@ function App() {
         <>
             <div className='ButtonsContainer'>
                 <div className='filterButtons'>
-                    <button>Smaller Then LT</button>
+                    <button onClick={areaLessThanLT}>
+                        Smaller than Lithuania
+                    </button>
                     <div>
                         <label for='region'>Choose a region:</label>
                         <select onChange={filterByRegion} id='region'>
@@ -131,7 +147,7 @@ function App() {
             <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={
-                    selectedRegion !== 'All regions'
+                    selectedRegion !== 'All regions' || smallerThanLT
                         ? filteredData.length
                         : data.length
                 }
