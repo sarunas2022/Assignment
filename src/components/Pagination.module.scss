@@ -18,15 +18,15 @@
         }
     }
     .currentPageNumberBox {
-        border: 0.1rem solid black;
+        border: 0.1rem solid rgb(21, 101, 192);
         display: flex;
         padding: 0.5rem;
         width: 1.5rem;
         height: 1.5rem;
         justify-content: center;
         align-items: center;
-        color: red;
-        background-color: lightgray;
+        background-color: rgb(21, 101, 192);
+        color: white;
         transform: scale(1.1);
     }
 }

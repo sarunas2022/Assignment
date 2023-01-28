@@ -130,7 +130,9 @@ function App() {
                 areaLessThanLT={() => areaLessThanLT()}
                 filterByRegion={(event) => filterByRegion(event)}
                 sortingPosts={() => sortingPosts()}
+                selectedRegion={selectedRegion}
                 sort={sort}
+                smallerThanLT={smallerThanLT}
             />
             <Posts data={currentPost} status={status} />
             <Pagination

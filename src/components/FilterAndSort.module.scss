@@ -10,17 +10,28 @@
             display: flex;
             gap: 1rem;
             align-items: flex-end;
-            .regionContainer {
-                display: flex;
-                flex-direction: column;
+            .containedSelect {
+                border: 1px solid rgb(25, 127, 220);
+                background-color: white;
+                color: rgb(25, 127, 220);
+                padding: 0.5rem 1rem;
+                border-radius: 0.4rem;
+                transition: 0.2s ease-in-out;
+                font-weight: bold;
+            }
+            .outlinedSelect {
+                border: 1px solid rgb(25, 127, 220);
+                background-color: rgb(25, 127, 220);
+                color: white;
+                padding: 0.5rem 1rem;
+                border-radius: 0.4rem;
+                transition: 0.2s ease-in-out;
+                font-weight: bold;
+                option {
+                    background-color: white;
+                    color: rgb(25, 127, 220);
+                }
             }
         }
     }
-}
-
-.select {
-    padding: 0.3rem;
-    border: 0.1rem solid black;
-    border-radius: 0.5rem;
-    background-color: lightgray;
 }
