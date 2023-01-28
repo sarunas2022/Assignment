@@ -10,6 +10,15 @@ export const Posts = ({ data, status }) => {
             </div>
         );
     }
+    if (!data.length) {
+        return (
+            <div className={styles.output}>
+                <div className={styles.wrapper}>
+                    <p>There is no country matching selected criteria</p>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className={styles.output}>
             <div className={styles.wrapper}>
