@@ -1,0 +1,15 @@
+.buttonsContainer {
+    display: flex;
+    padding: 1rem 2rem 0 2rem;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .filterButtons {
+        display: flex;
+        gap: 2rem;
+        .regionContainer {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
