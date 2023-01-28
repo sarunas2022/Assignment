@@ -2,6 +2,7 @@ import './App.scss';
 import React, { useState, useEffect } from 'react';
 import { Posts } from './components/Posts';
 import { Pagination } from './components/Pagination';
+import { FilterAndSort } from './components/FilterAndSort';
 
 function App() {
     // for data fetching and status
@@ -16,7 +17,7 @@ function App() {
     const [selectedRegion, setSelectedRegion] = useState('All regions');
     const [smallerThanLT, setSmallerThanLT] = useState(false);
     const [filteredData, setFilteredData] = useState('');
-    console.log(filteredData);
+
     // Fetching data on page load
     useEffect(() => {
         // getting data from API
@@ -27,8 +28,12 @@ function App() {
                     'https://restcountries.com/v2/all?fields=name,region,area'
                 );
                 const response = await data.json();
-                setData(response);
-                console.log(response);
+
+                const sortedResponse = response.sort((a, b) => {
+                    if (a.name < b.name) return -1;
+                    return 1;
+                });
+                setData(sortedResponse);
 
                 setStatus('fulfilled');
             } catch (err) {
@@ -77,11 +82,12 @@ function App() {
 
     // onChange sets region value to state to enable filtering posts by region
     const filterByRegion = (event) => {
-        setSelectedRegion(event.target.value);
+        const chosenRegion = event.target.value;
+        setSelectedRegion(chosenRegion);
     };
     // onClicks  filtering posts by area < Lithuania
     const areaLessThanLT = () => {
-        !smallerThanLT ? setSmallerThanLT(true) : setSmallerThanLT(false);
+        setSmallerThanLT(!smallerThanLT);
     };
 
     // all filters
@@ -112,37 +118,20 @@ function App() {
     // change page - function passed down as props to pagination.jsx, returns
     // value of click event as pageNumber and its used sets CurrentPage
 
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        // to scroll to the top of the page if pressed not on a href but on div
+        window.scrollTo(0, 0);
+    };
 
     return (
         <>
-            <div className='ButtonsContainer'>
-                <div className='filterButtons'>
-                    <button onClick={areaLessThanLT}>
-                        Smaller than Lithuania
-                    </button>
-                    <div>
-                        <label for='region'>Choose a region:</label>
-                        <select onChange={filterByRegion} id='region'>
-                            <option value='All regions'>All regions</option>
-                            <option value='Africa'>Africa</option>
-                            <option value='Americas'>Americas</option>
-                            <option value='Antarctic Ocean'>
-                                Antarctic Ocean
-                            </option>
-                            <option value='Asia'>Asia</option>
-                            <option value='Europe'>Europe</option>
-                            <option value='Oceania'>Oceania</option>
-                            <option value='Polar'>Polar</option>
-                        </select>
-                    </div>
-                </div>
-                <div className='sortingButtons'>
-                    <button onClick={() => sortingPosts()}>
-                        {sort === 'ascending' ? 'Sort (Z-A)' : 'Sort (A-Z)'}
-                    </button>
-                </div>
-            </div>
+            <FilterAndSort
+                areaLessThanLT={() => areaLessThanLT()}
+                filterByRegion={(event) => filterByRegion(event)}
+                sortingPosts={() => sortingPosts()}
+                sort={sort}
+            />
             <Posts data={currentPost} status={status} />
             <Pagination
                 postsPerPage={postsPerPage}
