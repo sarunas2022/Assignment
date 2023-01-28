@@ -5,28 +5,28 @@
     padding: 1rem;
     .pageNumberBox {
         border: 0.1rem solid black;
-        text-align: center;
+        display: flex;
         padding: 0.5rem;
-        width: 2.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        justify-content: center;
+        align-items: center;
+
         &:hover {
             cursor: pointer;
-        }
-        .pageLink {
-            text-decoration: none;
-            color: black;
+            transform: scale(1.1);
         }
     }
     .currentPageNumberBox {
         border: 0.1rem solid black;
-        text-align: center;
+        display: flex;
         padding: 0.5rem;
-        width: 2.5rem;
-        &:hover {
-            cursor: pointer;
-        }
-        .pageLink {
-            text-decoration: none;
-            color: red;
-        }
+        width: 1.5rem;
+        height: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        color: red;
+        background-color: lightgray;
+        transform: scale(1.1);
     }
 }

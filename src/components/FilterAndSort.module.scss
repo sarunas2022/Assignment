@@ -1,15 +1,19 @@
-.buttonsContainer {
-    display: flex;
-    padding: 1rem 2rem 0 2rem;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    .filterButtons {
+.filerAndSortContainer {
+    padding: 1rem 2rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    .buttonsContainer {
         display: flex;
-        gap: 2rem;
-        .regionContainer {
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 1rem;
+        .filterButtons {
             display: flex;
-            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-end;
+            .regionContainer {
+                display: flex;
+                flex-direction: column;
+            }
         }
     }
 }

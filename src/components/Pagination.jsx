@@ -25,9 +25,7 @@ export const Pagination = ({
                     }
                     key={number}
                 >
-                    <a className={styles.pageLink} href='!#'>
-                        {number}
-                    </a>
+                    {number}
                 </div>
             ))}
         </div>
