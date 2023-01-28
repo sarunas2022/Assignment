@@ -125,7 +125,7 @@ function App() {
     };
 
     return (
-        <>
+        <div className='output'>
             <FilterAndSort
                 areaLessThanLT={() => areaLessThanLT()}
                 filterByRegion={(event) => filterByRegion(event)}
@@ -143,7 +143,7 @@ function App() {
                 paginate={paginate}
                 currentPage={currentPage}
             />
-        </>
+        </div>
     );
 }
 
