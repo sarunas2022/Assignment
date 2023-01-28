@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from './Button';
 import styles from './FilterAndSort.module.scss';
 
 export const FilterAndSort = ({
@@ -12,10 +13,10 @@ export const FilterAndSort = ({
             <div className={styles.buttonsContainer}>
                 <div className={styles.filterButtons}>
                     <div>
-                        <p>Filter:</p>
-                        <button onClick={areaLessThanLT}>
-                            Smaller than Lithuania
-                        </button>
+                        <Button
+                            text='Smaller than LT'
+                            functionality={areaLessThanLT}
+                        />
                     </div>
 
                     <div className={styles.regionContainer}>
@@ -35,9 +36,15 @@ export const FilterAndSort = ({
                     </div>
                 </div>
                 <div className={styles.sortingButtons}>
-                    <button onClick={sortingPosts}>
+                    {/* <button onClick={sortingPosts}>
                         {sort === 'ascending' ? 'Sort (Z-A)' : 'Sort (A-Z)'}
-                    </button>
+                    </button> */}
+                    <Button
+                        text={
+                            sort === 'ascending' ? 'Sort (Z-A)' : 'Sort (A-Z)'
+                        }
+                        functionality={sortingPosts}
+                    />
                 </div>
             </div>
         </div>

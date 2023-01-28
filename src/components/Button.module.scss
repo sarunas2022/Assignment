@@ -1,0 +1,26 @@
+.outlinedButton {
+    border: 1px solid rgb(25, 127, 220);
+    background-color: rgb(25, 127, 220);
+    color: white; /* change this to the desired text color */
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    transition: 0.2s ease-in-out;
+    &:hover {
+        cursor: pointer;
+        background-color: rgb(21, 101, 192);
+    }
+}
+.containedButton {
+    border: 1px solid rgb(25, 127, 220);
+    background-color: white;
+    color: rgb(25, 127, 220); /* change this to the desired text color */
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    transition: 0.2s ease-in-out;
+    &:hover {
+        cursor: pointer;
+        border: 1px solid rgb(21, 101, 192);
+        background-color: rgb(246, 250, 253);
+        color: rgb(21, 101, 192);
+    }
+}
