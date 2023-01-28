@@ -10,3 +10,10 @@
         }
     }
 }
+.loader {
+    // here is styling to make loader in a middle of visible screen
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

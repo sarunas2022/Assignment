@@ -1,9 +1,14 @@
 import React from 'react';
 import styles from './Posts.module.scss';
+import { CircularProgress } from '@mui/material';
 
 export const Posts = ({ data, status }) => {
     if (status === 'loading') {
-        return <h2>Loading</h2>;
+        return (
+            <div className={styles.loader}>
+                <CircularProgress />
+            </div>
+        );
     }
     return (
         <div className={styles.output}>
