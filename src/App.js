@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Posts } from './components/Posts';
 import { Pagination } from './components/Pagination';
 import { FilterAndSort } from './components/FilterAndSort';
+import { Navigation } from './components/Navigation';
 
 function App() {
     // for data fetching and status
@@ -13,7 +14,7 @@ function App() {
     const [postsPerPage] = useState(20);
     // for sorting
     const [sort, setSort] = useState('ascending');
-    // for filtering by region- store the selected region option value
+    // for filtering
     const [selectedRegion, setSelectedRegion] = useState('All regions');
     const [smallerThanLT, setSmallerThanLT] = useState(false);
     const [filteredData, setFilteredData] = useState('');
@@ -28,7 +29,6 @@ function App() {
                     'https://restcountries.com/v2/all?fields=name,region,area'
                 );
                 const response = await data.json();
-
                 const sortedResponse = response.sort((a, b) => {
                     if (a.name < b.name) return -1;
                     return 1;
@@ -46,7 +46,7 @@ function App() {
 
     // function to sort post ascending or descending alphabetically
     const sortingPosts = () => {
-        // checking if data was filtered if not sorting data array
+        // checking if data was filtered, if not sorting data array
         if (selectedRegion === 'All regions' && !smallerThanLT) {
             if (sort === 'Descending') {
                 setSort('ascending');
@@ -61,6 +61,7 @@ function App() {
                     return 1;
                 });
             }
+            // else sorting filteredData
         } else {
             if (sort === 'Descending') {
                 setSort('ascending');
@@ -120,12 +121,13 @@ function App() {
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
-        // to scroll to the top of the page if pressed not on a href but on div
+        // to scroll to the top of the page if pressed on the page
         window.scrollTo(0, 0);
     };
 
     return (
         <div className='output'>
+            <Navigation />
             <FilterAndSort
                 areaLessThanLT={() => areaLessThanLT()}
                 filterByRegion={(event) => filterByRegion(event)}
