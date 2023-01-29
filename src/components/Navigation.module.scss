@@ -1,8 +1,13 @@
 .navigationBar {
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     background-color: rgb(21, 101, 192);
-    padding: 1rem 2rem;
+    padding: 1rem 0.5rem;
     color: white;
     display: flex;
     gap: 0.5rem;
+}
+@media (min-width: 48rem) {
+    .navigationBar {
+        padding: 1rem 2rem;
+    }
 }
