@@ -11,7 +11,7 @@ function App() {
     const [status, setStatus] = useState('idle');
     // for pagination
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(20);
+    const [postsPerPage] = useState(25);
     // for sorting
     const [sort, setSort] = useState('ascending');
     // for filtering
@@ -140,6 +140,7 @@ function App() {
             <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={
+                    // checks if there is no filtered data, to determine with length of the post to use
                     selectedRegion !== 'All regions' || smallerThanLT
                         ? filteredData.length
                         : data.length

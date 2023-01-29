@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 0.2rem;
-    padding: 1rem;
+    padding: 0.5rem 0.5rem;
     .pageNumberBox {
         border: 0.1rem solid black;
         display: flex;
@@ -28,5 +28,10 @@
         background-color: rgb(21, 101, 192);
         color: white;
         transform: scale(1.1);
+    }
+}
+@media (min-width: 48rem) {
+    .filerAndSortContainer {
+        padding: 0.5rem 2rem;
     }
 }

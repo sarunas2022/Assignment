@@ -1,5 +1,5 @@
 .filerAndSortContainer {
-    padding: 0.5rem 2rem;
+    padding: 0.5rem 0.5rem;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     .buttonsContainer {
         display: flex;
@@ -13,7 +13,7 @@
                 border: 1px solid rgb(25, 127, 220);
                 background-color: white;
                 color: rgb(25, 127, 220);
-                padding: 0.5rem 1rem;
+                padding: 0.5rem 0.5rem;
                 border-radius: 0.4rem;
                 transition: 0.2s ease-in-out;
                 font-weight: bold;
@@ -22,7 +22,7 @@
                 border: 1px solid rgb(25, 127, 220);
                 background-color: rgb(25, 127, 220);
                 color: white;
-                padding: 0.5rem 1rem;
+                padding: 0.5rem 0.5rem;
                 border-radius: 0.4rem;
                 transition: 0.2s ease-in-out;
                 font-weight: bold;
@@ -32,5 +32,10 @@
                 }
             }
         }
+    }
+}
+@media (min-width: 48rem) {
+    .filerAndSortContainer {
+        padding: 0.5rem 2rem;
     }
 }
