@@ -18,7 +18,7 @@ function App() {
     const [selectedRegion, setSelectedRegion] = useState('All regions');
     const [smallerThanLT, setSmallerThanLT] = useState(false);
     const [filteredData, setFilteredData] = useState('');
-
+    console.log(data);
     // Fetching data on page load
     useEffect(() => {
         // getting data from API
@@ -91,6 +91,9 @@ function App() {
         setSmallerThanLT(!smallerThanLT);
     };
 
+    // finding object in array with name Lithuania to use its area size
+    const lithuania = data.find((country) => country.name === 'Lithuania');
+
     // all filters
     useEffect(() => {
         let filteredData = [...data];
@@ -101,12 +104,12 @@ function App() {
         }
         if (smallerThanLT) {
             filteredData = filteredData.filter(
-                (country) => country.area < 65300
+                (country) => country.area < lithuania.area
             );
         }
         setFilteredData(filteredData);
         setCurrentPage(1);
-    }, [data, selectedRegion, smallerThanLT]);
+    }, [data, selectedRegion, smallerThanLT, lithuania]);
 
     // get current posts
     const indexOfLastPost = currentPage * postsPerPage;
