@@ -18,7 +18,7 @@ function App() {
     const [selectedRegion, setSelectedRegion] = useState('All regions');
     const [smallerThanLT, setSmallerThanLT] = useState(false);
     const [filteredData, setFilteredData] = useState('');
-    console.log(data);
+
     // Fetching data on page load
     useEffect(() => {
         // getting data from API
